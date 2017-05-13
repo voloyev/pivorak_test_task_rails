@@ -1,0 +1,36 @@
+<h2>List of avaliable buses</h2>
+<div class="table-responsive">
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>
+          Name
+        </th>
+        <th>
+          From
+        </th>
+        <th>
+          Date from
+        </th>
+        <th>
+          To
+        </th>
+        <th>
+          Date to
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      <%- @buses.each do |t| %>
+        <tr>
+          <td><%= t.name %></td>
+          <td><%= t.from %></td>
+          <td><%= t.date_and_time_from %></td>
+          <td><%= t.to %></td>
+          <td><%= t.date_and_time_to %></td>
+          <br />
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
