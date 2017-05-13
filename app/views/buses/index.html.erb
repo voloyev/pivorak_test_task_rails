@@ -21,13 +21,15 @@
       </tr>
     </thead>
     <tbody>
-      <%- @buses.each do |t| %>
+      <%- @buses.each do |bus| %>
         <tr>
-          <td><%= t.name %></td>
-          <td><%= t.from %></td>
-          <td><%= t.date_and_time_from %></td>
-          <td><%= t.to %></td>
-          <td><%= t.date_and_time_to %></td>
+          <td><%= bus.name %></td>
+          <td><%= bus.from %></td>
+          <td><%= bus.date_and_time_from %></td>
+          <td><%= bus.to %></td>
+          <td><%= bus.date_and_time_to %></td>
+          <td><%= link_to 'Show', bus, class:'btn btn-default' %></td>
+
           <br />
         </tr>
       <% end %>
