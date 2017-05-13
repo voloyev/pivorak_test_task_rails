@@ -10,16 +10,20 @@
 
   <body>
     <div class="container">
+      <nav>
+        <%= link_to 'new bus', new_bus_path %>
+      </nav>
+      
       <p class="notice"><%= notice %></p>
       <p class="alert"><%= alert %></p>
 
       <% flash.each do |message_type, message| %>
-        <div class="alert alert-<%= message_type %>"><%= message %></div>
+        <div class="alert alert-<%= message_type %> alert-dismissible" role="alert">
+          <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <%= message %>
+        </div>
       <% end %>
-      
-      <nav>
-        <%= link_to 'new bus', new_bus_path %>
-      </nav>
+
       <%= yield %>
       <%= debug(params) if Rails.env.development? %>
     </div>

@@ -16,7 +16,7 @@ class BusesController < ApplicationController
     @bus = Bus.new(bus_params)
     if @bus.save
       redirect_to root_path
-      flash[:succes] = 'Bus added'
+      flash[:success] = 'Bus added'
     else
       render 'new'
     end
@@ -27,7 +27,7 @@ class BusesController < ApplicationController
 
   def update
     if @bus.update(bus_params)
-      flash[:succes] = "Bus #{@bus.name} updated"
+      flash[:success] = "Bus #{@bus.name} updated"
       redirect_to root_path
     else
       render 'new'
@@ -36,7 +36,7 @@ class BusesController < ApplicationController
 
   def destroy
     if @bus.destroy
-      flash[:succes] = "Bus #{@bus.name} deleted"
+      flash[:success] = "Bus #{@bus.name} deleted"
       redirect_to root_path
     else
       render 'show'
