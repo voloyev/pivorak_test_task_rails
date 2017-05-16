@@ -1,5 +1,6 @@
 class BusesController < ApplicationController
   before_action :set_bus, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_user!, except: :index
 
   def index
     @buses = Bus.all
@@ -42,12 +43,12 @@ class BusesController < ApplicationController
       render 'show'
     end
   end
-  
+
   private
 
   def bus_params
-    params.require(:bus).permit(:name, :from, :to, :seats, :date_and_time_from,
-                                :date_and_time_to)
+    params.require(:bus).permit(:name, :from, :to, :seats, :departure,
+                                :arrival)
   end
 
   def set_bus

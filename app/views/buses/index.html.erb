@@ -10,27 +10,36 @@
           From
         </th>
         <th>
-          Date from
+          Departure
         </th>
         <th>
           To
         </th>
         <th>
-          Date to
+          Arrival
+        </th>
+        <th>
+          Seats
+        </th>
+        <th>
+          Actions
         </th>
       </tr>
-    </thead>
+    </thead>    
     <tbody>
       <%- @buses.each do |bus| %>
         <tr>
           <td><%= bus.name %></td>
           <td><%= bus.from %></td>
-          <td><%= bus.date_and_time_from %></td>
+          <td><%= bus.departure %></td>
           <td><%= bus.to %></td>
-          <td><%= bus.date_and_time_to %></td>
-          <td><%= link_to 'Show', bus, class:'btn btn-default' %></td>
-
-          <br />
+          <td><%= bus.arrival %></td>
+          <td><%= bus.seats %></td>
+          <td>
+            <%= link_to 'Show', bus, class:'btn btn-default' %>
+            <%= link_to 'Buy a ticket', new_ticket_path, class: 'btn btn-default' %>
+          </td>
+          <br>
         </tr>
       <% end %>
     </tbody>

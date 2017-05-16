@@ -9,15 +9,18 @@
       <%= f.text_field :from, class: 'form-control'  %>
       <br>
 
-      <%= f.label :date_and_time_from  %>
-      <%= f.datetime_field :date_and_time_from, class: 'form-control' %>
+      <%= f.label :departure  %>
+      <%= f.datetime_field :departure, class: 'form-control' %>
       <br>
 
       <%= f.label :to %>
       <%= f.text_field :to, class: 'form-control'  %>
       <br>
-      <%= f.label :date_and_time_to  %>
-      <%= f.datetime_field :date_and_time_to, class: 'form-control' %>
+      <%= f.label :arrival  %>
+      <%= f.datetime_field :arrival, class: 'form-control' %>
+      <br>
+      <%= f.label :seats %>
+      <%= f.text_field :seats, class: 'form-control' %>
       <br>
       <p>
         <%= f.submit 'Create the bus', class: 'btn btn-primary' %>
