@@ -8,6 +8,15 @@
       </li>
     <% end %>
   </ul>
+  <ul>
+    <h4>Seats avaliable:</h4>
+    <% @bus.tickets.each do |t| %>
+      <li>
+        <%= t.seat %>  <%= link_to 'buy', buy_ticket_path(ticket_id: t.id), class: 'btn btn-default', method: :post%>
+
+      </li>
+    <% end %>
+  </ul>
 
 <p>
   <%= link_to 'Edit', edit_bus_path(@bus) %>

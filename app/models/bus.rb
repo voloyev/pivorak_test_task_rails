@@ -3,7 +3,7 @@ class Bus < ApplicationRecord
   has_many :tickets
 
   before_save :set_name
-  before_save :creat_tickets
+  before_save :create_tickets
 
   validates :from, presence: true
   validates :to, presence: true
