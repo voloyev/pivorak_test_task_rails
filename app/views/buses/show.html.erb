@@ -12,8 +12,9 @@
     <h4>Seats avaliable:</h4>
     <% @bus.tickets.each do |t| %>
       <li>
-        <%= t.seat %>  <%= link_to 'buy', buy_ticket_path(ticket_id: t.id), class: 'btn btn-default', method: :post%>
-
+        <% if t.user_id.nil? %>
+          <%= t.seat %>  <%= link_to 'buy', buy_ticket_path(ticket_id: t.id), class: 'btn btn-default', method: :post%>
+        <% end %>
       </li>
     <% end %>
   </ul>
