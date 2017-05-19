@@ -10,30 +10,9 @@
 
   <body>
     <div class="container">
-      <nav>
-        <%= link_to 'Home', root_path %> |
-        <% unless user_signed_in? %>
-          <%= link_to 'Login', new_user_session_path %> |
-          <%= link_to 'Sign up', new_user_registration_path %>
-        <% end %>
-
-        <% if user_signed_in? %>
-          <%= link_to 'Logout', destroy_user_session_path, method: :delete %> |
-          <%= link_to 'Profile', user_path(id: current_user.id ), method: :get %>|
-          <%= link_to 'New bus', new_bus_path %>
-        <% end %>
-        <% unless current_user.admin.nil? %>
-          <h4>YOU ARE ADMIN.</h4>
-        <% end %>
-      </nav>
+      <%= render 'shared/nav' %>
       <p class="notice"><%= notice %></p>
-      <% flash.each do |message_type, message| %>
-        <div class="alert alert-<%= message_type.nil? ? 'success' : message_type %> alert-dismissible" role="alert">
-          <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-          <%= message %>
-        </div>
-      <% end %>
-
+      <%= render 'shared/flash' %>
       <%= yield %>
       <%= debug(params) if Rails.env.development? %>
     </div>

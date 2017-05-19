@@ -1,0 +1,16 @@
+<nav>
+  <%= link_to 'Home', root_path %> |
+  <% unless user_signed_in? %>
+    <%= link_to 'Login', new_user_session_path %> |
+    <%= link_to 'Sign up', new_user_registration_path %>
+  <% end %>
+
+  <% if user_signed_in? %>
+    <%= link_to 'Logout', destroy_user_session_path, method: :delete %> |
+    <%= link_to 'Profile', user_path(id: current_user.id ), method: :get %>|
+    <%= link_to 'New bus', new_bus_path %>
+  <% end %>
+  <% if  !current_user.nil? && current_user.admin %>
+    <h4>YOU ARE ADMIN.</h4>
+  <% end %>
+</nav>
