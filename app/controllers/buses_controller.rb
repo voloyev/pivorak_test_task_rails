@@ -1,6 +1,7 @@
 class BusesController < ApplicationController
   before_action :set_bus, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!, except: :index
+  load_and_authorize_resource except: [:index, :show]
 
   def index
     @buses = Bus.all
