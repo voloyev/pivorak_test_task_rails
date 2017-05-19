@@ -1,12 +1,13 @@
 <%= current_user.email %>
-You have <%= pluralize current_user.tickets.count, 'tickets' %>
-
+<p>
+You have <%= pluralize current_user.tickets.count, 'ticket' %>
+<p>
 <%- current_user.tickets.each do |t| %>
   <ul>
     <li>Route: <%= t.bus.name %></li>
     <li>To: <%= t.bus.to %></li>
     <li>Seat: <%= t.seat %></li>
-    <li> <%=link_to "remove", remove_ticket_path(ticket_id: t.id), method: :post %></li>
+     <%=link_to "remove", remove_ticket_path(ticket_id: t.id), method: :post, class: 'btn btn-danger' %>
 
   </ul>
 <% end %>
