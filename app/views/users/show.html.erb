@@ -1,0 +1,11 @@
+<%= current_user.email %>
+You have <%= pluralize current_user.tickets.count, 'tickets' %>
+
+<%- current_user.tickets.each do |t| %>
+  <ul>
+    <li>Route: <%= t.bus.name %></li>
+    <li>To: <%= t.bus.to %></li>
+    <li>Seat: <%= t.seat %></li>
+  </ul>
+<% end %>
+
