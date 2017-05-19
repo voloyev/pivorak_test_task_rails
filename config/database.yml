@@ -22,4 +22,5 @@ test:
 
 production:
   adapter: postgresql
-  database: pivorak_test_task
+  database: pivorak-test-task-yevtushenko_production
+  username: pivorak-test-task-yevtushenko
