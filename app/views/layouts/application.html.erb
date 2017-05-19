@@ -9,6 +9,24 @@
   </head>
 
   <body>
-    <%= yield %>
+    <div class="container">
+      <nav>
+        <%= link_to 'new bus', new_bus_path %>
+        <% if user_signed_in? %>
+          <%= link_to 'logout', destroy_user_session_path, method: :delete %>
+          <%= link_to 'profile', user_path(id: current_user.id ), method: :get %>
+        <% end %>
+      </nav>
+      <p class="notice"><%= notice %></p>
+      <% flash.each do |message_type, message| %>
+        <div class="alert alert-<%= message_type.nil? ? message_type : 'success' %> alert-dismissible" role="alert">
+          <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <%= message %>
+        </div>
+      <% end %>
+
+      <%= yield %>
+      <%= debug(params) if Rails.env.development? %>
+    </div>
   </body>
 </html>

@@ -1,0 +1,27 @@
+<h3><%= @bus.name %></h3>
+<h4>Stops:</h4>
+
+  <ul>
+    <% @bus.bus_stops.each do |s| %>
+      <li>
+        <%= s.stop_name %> : <%= s.time %>
+      </li>
+    <% end %>
+  </ul>
+  <ul>
+    <h4>Seats avaliable:</h4>
+    <% @bus.tickets.each do |t| %>
+      <li>
+        <%= t.seat %>  <%= link_to 'buy', buy_ticket_path(ticket_id: t.id), class: 'btn btn-default', method: :post%>
+
+      </li>
+    <% end %>
+  </ul>
+
+<p>
+  <%= link_to 'Edit', edit_bus_path(@bus) %>
+</p>
+
+<p>
+  <%= link_to 'Delete', bus_path, method: :delete  %>
+</p>

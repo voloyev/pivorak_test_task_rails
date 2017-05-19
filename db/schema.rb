@@ -10,16 +10,53 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170511120352) do
+ActiveRecord::Schema.define(version: 20170518162301) do
 
-  create_table "users", force: :cascade do |t|
-    t.string   "name"
-    t.string   "email"
-    t.datetime "created_at",      null: false
-    t.datetime "updated_at",      null: false
-    t.boolean  "admin"
-    t.string   "password_digest"
-    t.index ["email"], name: "index_users_on_email", unique: true
+  create_table "bus_stops", force: :cascade do |t|
+    t.string   "stop_name"
+    t.datetime "time"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
+  create_table "bus_stops_buses", force: :cascade do |t|
+    t.integer "bus_id"
+    t.integer "bus_stop_id"
+  end
+
+  create_table "buses", force: :cascade do |t|
+    t.string   "name"
+    t.string   "from"
+    t.string   "to"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer  "seats"
+    t.datetime "departure"
+    t.datetime "arrival"
+  end
+
+  create_table "tickets", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer  "seat"
+    t.integer  "bus_id"
+    t.integer  "user_id"
+  end
+
+  create_table "users", force: :cascade do |t|
+    t.string   "email",                  default: "", null: false
+    t.string   "encrypted_password",     default: "", null: false
+    t.string   "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.integer  "sign_in_count",          default: 0,  null: false
+    t.datetime "current_sign_in_at"
+    t.datetime "last_sign_in_at"
+    t.string   "current_sign_in_ip"
+    t.string   "last_sign_in_ip"
+    t.datetime "created_at",                          null: false
+    t.datetime "updated_at",                          null: false
+    t.index ["email"], name: "index_users_on_email", unique: true
+    t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+  end
 end

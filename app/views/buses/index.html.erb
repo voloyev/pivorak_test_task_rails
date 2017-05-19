@@ -1,0 +1,46 @@
+<h2>List of avaliable buses</h2>
+<div class="table-responsive">
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>
+          Name
+        </th>
+        <th>
+          From
+        </th>
+        <th>
+          Departure
+        </th>
+        <th>
+          To
+        </th>
+        <th>
+          Arrival
+        </th>
+        <th>
+          Seats
+        </th>
+        <th>
+          Actions
+        </th>
+      </tr>
+    </thead>    
+    <tbody>
+      <%- @buses.each do |bus| %>
+        <tr>
+          <td><%= bus.name %></td>
+          <td><%= bus.from %></td>
+          <td><%= bus.departure %></td>
+          <td><%= bus.to %></td>
+          <td><%= bus.arrival %></td>
+          <td><%= bus.seats %></td>
+          <td>
+            <%= link_to 'Show', bus, class:'btn btn-default' %>
+          </td>
+          <br>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
