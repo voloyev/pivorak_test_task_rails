@@ -3,7 +3,6 @@ class CreateBusStops < ActiveRecord::Migration[5.0]
     create_table :bus_stops do |t|
       t.string :stop_name
       t.datetime :time
-      t.belongs_to :bus, index: true
 
       t.timestamps
     end
