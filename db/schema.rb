@@ -17,7 +17,6 @@ ActiveRecord::Schema.define(version: 20170519161034) do
     t.datetime "time"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index [nil], name: "index_bus_stops_on_bus_id"
   end
 
   create_table "bus_stops_buses", force: :cascade do |t|
@@ -35,7 +34,6 @@ ActiveRecord::Schema.define(version: 20170519161034) do
     t.datetime "arrival"
     t.integer  "seats"
     t.integer  "sold_tickets"
-    t.index [nil], name: "index_buses_on_bus_stop_id"
   end
 
   create_table "tickets", force: :cascade do |t|
