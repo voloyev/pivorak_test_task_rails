@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   before_action :find_user_id
-  
+
   def show; end
 
   def buy_ticket
@@ -13,13 +13,13 @@ class UsersController < ApplicationController
   end
 
   def remove_ticket
-    Ticket.find(params[:ticket_id]).bus.update(seats: Ticket.find(params[:ticket_id]).bus.seats + 1)
-    if current_user.tickets.delete(Ticket.find(params[:ticket_id]))
+    ticket = Ticket.find(params[:ticket_id])
+    ticket.bus.update(seats: ticket.bus.seats + 1)
+    if current_user.tickets.delete(ticket)
       flash[:success] = 'You have removed ticket'
     else
       flash[:alert] = 'Some errors'
     end
-
     redirect_to user_path(@user_id)
   end
 
