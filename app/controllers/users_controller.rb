@@ -9,4 +9,10 @@ class UsersController < ApplicationController
       flash[:success] = 'You have bought ticket'
     end
   end
+
+  def remove_ticket
+    current_user.tickets.delete(Ticket.find(params[:ticket_id]))
+    redirect_to user_path(current_user.id)
+    flash[:success] = 'You have removed ticket'
+  end
 end

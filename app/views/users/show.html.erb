@@ -6,6 +6,8 @@ You have <%= pluralize current_user.tickets.count, 'tickets' %>
     <li>Route: <%= t.bus.name %></li>
     <li>To: <%= t.bus.to %></li>
     <li>Seat: <%= t.seat %></li>
+    <li> <%=link_to "remove", remove_ticket_path(ticket_id: t.id), method: :post %></li>
+
   </ul>
 <% end %>
 
