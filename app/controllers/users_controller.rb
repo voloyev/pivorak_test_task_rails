@@ -5,8 +5,8 @@ class UsersController < ApplicationController
 
   def buy_ticket
     ticket = Ticket.find(params[:ticket_id])
-    if current_user.tickets << ticket
-      ticket.bus.update(seats: ticket.bus.seats - 1)
+
+    if Users::Ticket.add(ticket: ticket, user: current_user)
       redirect_to root_path
       flash[:success] = 'You have bought ticket'
     end
@@ -15,6 +15,7 @@ class UsersController < ApplicationController
   def remove_ticket
     ticket = Ticket.find(params[:ticket_id])
     ticket.bus.update(seats: ticket.bus.seats + 1)
+
     if current_user.tickets.delete(ticket)
       flash[:success] = 'You have removed ticket'
     else

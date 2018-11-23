@@ -1,6 +1,4 @@
 class BusesController < ApplicationController
-  before_action :set_bus, only: [:show, :edit, :update, :destroy]
-  before_action :authenticate_user!, except: :index
   load_and_authorize_resource except: [:index, :show]
 
   def index
@@ -8,13 +6,20 @@ class BusesController < ApplicationController
   end
 
   def show
+    authenticate_user!
+
+    @bus = set_bus
   end
 
   def new
+    authenticate_user!
+
     @bus = Bus.new
   end
 
   def create
+    authenticate_user!
+
     @bus = Bus.new(bus_params)
     if @bus.save
       redirect_to root_path
@@ -25,11 +30,15 @@ class BusesController < ApplicationController
   end
 
   def edit
+    authenticate_user!
   end
 
   def update
-    if @bus.update(bus_params)
-      flash[:success] = "Bus #{@bus.name} updated"
+    authenticate_user!
+
+    bus = set_bus
+    if bus.update(bus_params)
+      flash[:success] = "Bus #{bus.name} updated"
       redirect_to root_path
     else
       render 'new'
@@ -37,8 +46,12 @@ class BusesController < ApplicationController
   end
 
   def destroy
-    if @bus.destroy
-      flash[:success] = "Bus #{@bus.name} deleted"
+    authenticate_user!
+
+    bus = set_bus
+
+    if bus.destroy
+      flash[:success] = "Bus #{bus.name} deleted"
       redirect_to root_path
     else
       render 'show'
@@ -48,11 +61,14 @@ class BusesController < ApplicationController
   private
 
   def bus_params
-    params.require(:bus).permit(:from, :to, :seats, :departure,
+    params.require(:bus).permit(:from,
+                                :to,
+                                :seats,
+                                :departure,
                                 :arrival)
   end
 
   def set_bus
-    @bus = Bus.find(params[:id])
+    Bus.find(params[:id])
   end
 end

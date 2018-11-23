@@ -11,13 +11,13 @@ class Bus < ApplicationRecord
   protected
 
   def set_name
-    self.name = self.from.to_s + '-' + self.to.to_s
+    name = from.to_s + '-' + to.to_s
   end
 
   def create_tickets
-    self.seats.times do |i = 0|
+    seats.times do |i = 0|
       i += 1
-      self.tickets << Ticket.create(seat: i, bus_id: self.id)
+      tickets << Ticket.create(seat: i, bus_id: self.id)
     end
   end
 end
